@@ -63,7 +63,7 @@ if will_rain or will_snow:
     my_email.send_email(
         mail_to=[to_email],
         subject= will_rain_message,
-        body= will_snow_message',
+        body= will_snow_message,
         html=True,
         use_ssl=True,
     )
