@@ -38,33 +38,37 @@ weather_slice = weather_data["list"][:7]
 print(weather_slice)
 
 will_rain = False
-will_snow = ''
+will_snow = False
+will_rain_message = "Its not gonna rain today."
+will_snow_message = "There is not snow today."
 for data in weather_slice:
     condition_code = data["weather"][0]["id"]    
     if int(condition_code) < 600:
         will_rain = True
+        will_rain_message = "Its gonna rain, bring a umbrella."
     if int(condition_code) < 700 and int(condition_code) >= 600:
-        will_snow = "Its also gonna snow."
+        will_snow = True
+        will_snow_message = "Also its gonna snow."
 
 
+if will_rain or will_snow:
+    my_email = Email.Email(server='smtp.gmail.com', port=465, address=from_email, password=from_gmail_password)
+    """
+        server: the code for your email provider like smtp.yahoo.com
+        port: 465 is for sending emails
+        address: sender email
+        password: 16 digits password for apps your provider gave u    
+    """
 
-my_email = Email.Email(server='smtp.gmail.com', port=465, address=from_email, password=from_gmail_password)
-"""
-    server: the code for your email provider like smtp.yahoo.com
-    port: 465 is for sending emails
-    address: sender email
-    password: 16 digits password for apps your provider gave u    
-"""
+    my_email.send_email(
+        mail_to=[to_email],
+        subject= will_rain_message,
+        body= will_snow_message',
+        html=True,
+        use_ssl=True,
+    )
 
-my_email.send_email(
-    mail_to=[to_email],
-    subject='Its gonna rain, bring a umbrella',
-    body=f'{will_snow}',
-    html=True,
-    use_ssl=True,
-)
-
-"""
-    html: If true it will send email as html,
-    use_ssl: Encrypts the message if true. Keep True unless u know what you are doing.
-"""
+    """
+        html: If true it will send email as html,
+        use_ssl: Encrypts the message if true. Keep True unless u know what you are doing.
+    """
