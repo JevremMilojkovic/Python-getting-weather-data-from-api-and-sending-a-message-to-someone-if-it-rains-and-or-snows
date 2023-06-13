@@ -11,7 +11,7 @@ from_gmail_password = "dxdbvvgtcpkjtoal"
     OW_api: Link to openweather site,
     api_key: Your generated API key,
     from_email: Sender email,
-    password: !!! sender email password(not your mail password you need to go to manage your account settings and turn on 2 step authentication 
+    from_gmail_password: !!! sender email password(not your mail password you need to go to manage your account settings and turn on 2 step authentication 
     under security after which u add app password that u will use here. The mail provider will give u a 16 digit
     password u will use here). If u dont do this, google will block your program from sending message.
     to_email: To who u are sending, the program lets u send multiple emails by adding them as a list.
